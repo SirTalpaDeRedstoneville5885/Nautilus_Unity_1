@@ -9,6 +9,7 @@ public class kill : MonoBehaviour
         {
             //    Debug.Log("Player Toccato!");
             collision.transform.position = RespawnPoint;
+            GameManager.Vite--;
         }
     }
 }
