@@ -5,6 +5,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject pos1, pos2, pos3, nextPos;
     [SerializeField] float speed;
     [SerializeField] GameObject enemyBody;
+    [SerializeField] Animator Anim;
+    [SerializeField] GameObject EnemyBody;
     bool lap = true;
     void FixedUpdate()
     {
@@ -36,5 +38,7 @@ public class EnemyMovement : MonoBehaviour
                 nextPos = pos3;
             }
         }
+        Anim.SetBool("Moving", lap);
+        EnemyBody.transform.localRotation = (lap) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
     }
 }

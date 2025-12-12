@@ -29,8 +29,9 @@ public class PlayerMoves : MonoBehaviour
         // controlla se il player è sotto una certa altezza
         if (transform.position.y <= -10f)
         {
-            transform.position= Vector3.zero;
+            transform.position = Vector3.zero;
             GameManager.Vite--;
+            Anim.SetTrigger("LostLife");
         }
 
         isGrounded = Physics2D.OverlapCircle(Groundchek.position, GroundDistance, groundMask);
@@ -48,16 +49,16 @@ public class PlayerMoves : MonoBehaviour
         if (isGrounded) CJ = 0;
 
         horizontalMovement = Input.GetAxis("Horizontal");
-        facingRight = (horizontalMovement >= 0.01) ? true : false ;
-        
+        facingRight = (horizontalMovement > 0) ? true : false;
+
         if (horizontalMovement != 0)
         {
-            Anim.SetBool("IsWalking", true) ;
-            PlayerBody.transform.localRotation = (facingRight)? Quaternion.Euler(0,0,0) : Quaternion.Euler(0,180,0);
+            Anim.SetBool("IsWalking", true);
+            PlayerBody.transform.localRotation = (facingRight) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
         }
         else
         {
-            Anim.SetBool("IsWalking", false) ;
+            Anim.SetBool("IsWalking", false);
         }
 
     }
@@ -70,9 +71,9 @@ public class PlayerMoves : MonoBehaviour
     public void Jump()
     {
         Anim.SetTrigger("Jumping");
-    
+
         rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0);
         rb2d.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
-    
+
 }
