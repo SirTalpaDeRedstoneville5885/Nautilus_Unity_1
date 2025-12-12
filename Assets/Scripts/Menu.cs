@@ -13,4 +13,8 @@ public class Menu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+    public void CloseGame()
+    {
+        Application.Quit();
+    }
 }

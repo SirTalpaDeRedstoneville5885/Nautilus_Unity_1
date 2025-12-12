@@ -2,10 +2,12 @@ using UnityEngine;
 using TMPro;
 using NUnit.Framework.Internal;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    public static int Monete;
+    [SerializeField] public static int Monete;
+    public static int LV = 1;
     [SerializeField] TextMeshProUGUI TestoMonete;
     [SerializeField] TextMeshProUGUI TestoVite;
 
@@ -18,8 +20,13 @@ public class GameManager : MonoBehaviour
 
         if (Vite <= 0)
         {
-            //Debug.Log("Ho motto :(");
             SceneManager.LoadScene("GameOver");
+        }
+        if (Monete >= 100 && Monete != 0)
+        {
+            LV++;
+            Monete = 0;
+            SceneManager.LoadScene("Livello" + LV);
         }
     }
 

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Collect : MonoBehaviour
 {
-   void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag=="Player")
+        if (collision.tag == "Player")
         {
             //aggiornare contatore, la moneta va distrutta
             GameManager.Monete++;
-            //Debug.Log("Ho raccolto la moneta!");
+            AudioManager.Instance.AudioList[4].Play();
             Destroy(gameObject);
         }
     }

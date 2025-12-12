@@ -9,6 +9,7 @@ public class EnemyKill : MonoBehaviour
         {
             //    Debug.Log("Player Toccato! Ucciso oggetto");
             collision.transform.GetComponent<PlayerMoves>().Jump();
+            GameManager.Monete+=10;
             Destroy(Enemy);
         }
     }

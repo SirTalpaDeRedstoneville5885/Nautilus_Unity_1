@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ede0e5745cff83b42ba48a8a939dad3b
+  - enabled: 1
     path: Assets/Scenes/Livello1.unity
-    guid: 7c1bbcea179d2e543b490aab2389b3d8
+    guid: 553b16ba0ebee6444bb7e461f8389c10
+  - enabled: 1
+    path: Assets/Scenes/Livello2.unity
+    guid: 9de6612cb69897847b0ea902326957f5
+  - enabled: 1
+    path: Assets/Scenes/Livello3.unity
+    guid: 1ddcb6f19d22b644a9edb7a86f5a6c8f
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
-    guid: ede0e5745cff83b42ba48a8a939dad3b
+    guid: d96e462230955c2499d43cd2ca7f15ab
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
