@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
+    public static bool GameIsPaused = false;
+    [SerializeField] GameObject pausePanel, OptionPanel, AchievementButton;
     public void Resume()
     {
         GameIsPaused = false;
@@ -33,14 +35,12 @@ public class Pause : MonoBehaviour
         Resume();
         SceneManager.LoadScene(NomeScena);
     }
-    public static bool GameIsPaused = false;
-    [SerializeField] GameObject pausePanel;
-    [SerializeField] GameObject OptionPanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
+        AchievementButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,5 +68,6 @@ public class Pause : MonoBehaviour
         {
             Paused();
         }
+        AchievementButton.SetActive(GameManager.SlimeSbloccato);
     }
 }

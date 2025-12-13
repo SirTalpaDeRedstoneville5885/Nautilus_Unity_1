@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] public static int Monete;
     public static int LV = 1;
+    public static bool FineLivello, SlimeSbloccato = false;
     [SerializeField] TextMeshProUGUI TestoMonete;
     [SerializeField] TextMeshProUGUI TestoVite;
 
@@ -22,12 +23,13 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
         }
-        if (Monete >= 100 && Monete != 0)
+        if (Monete >= 100 && Monete != 0 && FineLivello)
         {
             LV++;
             Monete = 0;
             SceneManager.LoadScene("Livello" + LV);
         }
+        if (PlayerMoves.isSlimed && FineLivello) SlimeSbloccato = true;
     }
 
     void Start()
@@ -37,5 +39,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Monete = 0;
         Vite = 5;
+        FineLivello = false;
     }
 }

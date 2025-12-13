@@ -10,7 +10,8 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        }else
+        }
+        else
         {
             Destroy(this);
         }

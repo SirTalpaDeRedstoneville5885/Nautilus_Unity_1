@@ -108,7 +108,7 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -130,7 +130,7 @@ TextureImporter:
         width: 40
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -152,7 +152,7 @@ TextureImporter:
         width: 40
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -161,6 +161,50 @@ TextureImporter:
       bones: []
       spriteID: 78a7b34f247b6ae4e983bf3b71ae1493
       internalID: 1713093896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SNES - King of Dragons - Enemies - Slimes_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 36
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9372faf7306dc284bb98cd8bb3d41f80
+      internalID: -364695715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SNES - King of Dragons - Enemies - Slimes_4
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 71
+        width: 50
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00381cd7ea0786f46996161d303f5665
+      internalID: 1700442947
       vertices: []
       indices: 
       edges: []
@@ -183,6 +227,7 @@ TextureImporter:
       SNES - King of Dragons - Enemies - Slimes_1: -904673745
       SNES - King of Dragons - Enemies - Slimes_2: 1713093896
       SNES - King of Dragons - Enemies - Slimes_3: -364695715
+      SNES - King of Dragons - Enemies - Slimes_4: 1700442947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

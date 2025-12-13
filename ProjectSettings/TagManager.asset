@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Checkpoint
   - SlimeP-UP
+  - Flag
   layers:
   - Default
   - TransparentFX
