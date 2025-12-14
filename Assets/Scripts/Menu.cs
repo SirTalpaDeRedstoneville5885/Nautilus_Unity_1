@@ -6,43 +6,58 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] GameObject MenuPanel, CharacterPanel, Frame, Cop1;
-    [SerializeField] GameObject[] bottoni;
+    public bool SlimeDebug;
+    [SerializeField] GameObject MenuPanel, CharacterPanel, CreditPanel, Frame;
+    [SerializeField] GameObject[] BottoniChar, CopChar;
     [SerializeField] AudioSource LockedSound;
+    private void DisattivaTranne(GameObject Ciccio)
+    {
+        MenuPanel.SetActive(false);
+        CharacterPanel.SetActive(false);
+        CreditPanel.SetActive(false);
+        Ciccio.SetActive(true);
+    }
     public void Play()
     {
-        GameManager.LV = 0;
+        GameManager.LV = 1;
         SceneManager.LoadScene("Livello1");
     }
     public void LoadChars()
     {
-        MenuPanel.SetActive(false);
-        CharacterPanel.SetActive(true);
+        DisattivaTranne(CharacterPanel);
     }
     public void LockedChar()
     {
-        Cop1.GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(true);
+        CopChar[0].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(true);
         LockedSound.Play();
     }
     public void CloseChars()
     {
-        MenuPanel.SetActive(true);
-        CharacterPanel.SetActive(false);
-        Cop1.GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(false);
+        DisattivaTranne(MenuPanel);
+        CopChar[0].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(false);
     }
     void Start()
     {
-        CharacterPanel.SetActive(false);
+        GameManager.SlimeSbloccato = SlimeDebug;
+        DisattivaTranne(MenuPanel);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Cop1.GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-        if (GameManager.SlimeSbloccato) Destroy(Cop1);
+        CopChar[0].GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
+        if (GameManager.SlimeSbloccato) Destroy(CopChar[0]);
     }
 
-    public void SelectChar()
+    public void SelectChar(int SL)
     {
-        Frame.transform.position = this.gameObject.transform.position;
-        //return 0;
+        SpriteManager.Instance.SpriteIndex = SL;
+        Frame.transform.position = BottoniChar[SL].GetComponent<Transform>().position;
+    }
+    public void Credits()
+    {
+        DisattivaTranne(CreditPanel);
+    }
+    public void CloseCredits()
+    {
+        DisattivaTranne(MenuPanel);
     }
     public void CloseGame()
     {

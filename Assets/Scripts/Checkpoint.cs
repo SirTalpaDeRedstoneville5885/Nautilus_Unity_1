@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-[SerializeField] GameObject particles;
-public bool Activated = false;
-public static GameObject[] CheckPointList;
+    [SerializeField] GameObject particles;
+    public bool Activated = false;
+    public static GameObject[] CheckPointList;
 
 
-public static Vector3 GetActiveCheckpoint()
+    public static Vector3 GetActiveCheckpoint()
     {
-        Vector3 result = new Vector3(0,0,0);
+        Vector3 result = new Vector3(0, 0, 0);
         if (CheckPointList != null)
         {
-            foreach(GameObject cp in CheckPointList)
+            foreach (GameObject cp in CheckPointList)
             {
                 if (cp.GetComponent<Checkpoint>().Activated)
                 {
@@ -24,23 +24,23 @@ public static Vector3 GetActiveCheckpoint()
         }
         return result;
     }
-private void ActivateCheckPoint()
-{
-    foreach(GameObject cp in CheckPointList)
+    private void ActivateCheckPoint()
     {
-        cp.GetComponent<Checkpoint>().Activated=false;
+        foreach (GameObject cp in CheckPointList)
+        {
+            cp.GetComponent<Checkpoint>().Activated = false;
+        }
+        this.Activated = true;
+        GameObject particlesClone = Instantiate(particles, transform.position, transform.rotation);
+        Destroy(particlesClone, 2f);
     }
-    this.Activated = true;
-    GameObject particlesClone = Instantiate(particles,transform.position,transform.rotation);
-    Destroy(particlesClone,2f);
-}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         CheckPointList = GameObject.FindGameObjectsWithTag("Checkpoint");
     }
 
-  
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !this.Activated)

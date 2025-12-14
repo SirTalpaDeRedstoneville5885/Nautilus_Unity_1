@@ -6,18 +6,23 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public static int Monete;
-    public static int LV = 1;
+    [SerializeField] public static int Monete, LV = 1;
     public static bool FineLivello, SlimeSbloccato = false;
-    [SerializeField] TextMeshProUGUI TestoMonete;
-    [SerializeField] TextMeshProUGUI TestoVite;
+    [SerializeField] TextMeshProUGUI TestoMonete, TestoVite, TestoSalti;
 
     public static int Vite;
+
+    private string CalcolaSalti()
+    {
+        int r = PlayerMoves.JumpMax + 1;
+        return ("Numero salti: " + r.ToString());
+    }
 
     void Update()
     {
         TestoMonete.text = Monete.ToString();
         TestoVite.text = Vite.ToString();
+        TestoSalti.text = CalcolaSalti();
 
         if (Vite <= 0)
         {

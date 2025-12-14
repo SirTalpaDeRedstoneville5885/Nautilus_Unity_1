@@ -8,6 +8,8 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject pausePanel, OptionPanel, AchievementButton;
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         GameIsPaused = false;
         pausePanel.SetActive(false);
         Time.timeScale = 1f;
@@ -34,6 +36,13 @@ public class Pause : MonoBehaviour
         GameIsPaused = false;
         Resume();
         SceneManager.LoadScene(NomeScena);
+    }
+    public void Achievement()
+    {
+        GameIsPaused = false;
+        Resume();
+        SceneManager.LoadScene("Menu");
+        if (GameManager.SlimeSbloccato) Destroy(this);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

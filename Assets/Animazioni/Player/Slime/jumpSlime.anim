@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: walkMario
+  m_Name: jumpSlime
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1029769273, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
+      value: {fileID: -364695715, guid: 61d158e979e90c0409a4cf440dff5b2e, type: 3}
     - time: 0.083333336
-      value: {fileID: -1158447006, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
-    - time: 0.16666667
-      value: {fileID: -1158447006, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
-    - time: 0.25
-      value: {fileID: -1029769273, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
+      value: {fileID: -364695715, guid: 61d158e979e90c0409a4cf440dff5b2e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,16 +46,14 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1029769273, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
-    - {fileID: -1158447006, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
-    - {fileID: -1158447006, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
-    - {fileID: -1029769273, guid: a1f242adcb4a26844b69dc714b8492f9, type: 3}
+    - {fileID: -364695715, guid: 61d158e979e90c0409a4cf440dff5b2e, type: 3}
+    - {fileID: -364695715, guid: 61d158e979e90c0409a4cf440dff5b2e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.26666668
+    m_StopTime: 0.1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

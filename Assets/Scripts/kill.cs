@@ -1,5 +1,6 @@
 using System.Threading;
 using UnityEngine;
+using System.Collections;
 
 public class kill : MonoBehaviour
 {
@@ -7,10 +8,11 @@ public class kill : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(("Player")))
         {
-            //    Debug.Log("Player Toccato!");
-            PlayerMoves.Instance.Anim.SetTrigger("LostLife");
+            PlayerMoves.isDead = true;
+            PlayerMoves.Anim.SetTrigger("LostLife");
             collision.transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;
+            StartCoroutine(collision.gameObject.GetComponent<PlayerMoves>().NonMuoversi());
         }
     }
 }
