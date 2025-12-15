@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347402740604592651}
   m_Layer: 0
-  m_Name: wallCheck1
+  m_Name: wallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,6 @@ Transform:
   - {fileID: 7125757444836378203}
   - {fileID: 3655424383472747373}
   - {fileID: 347402740604592651}
-  - {fileID: 7312158824647240883}
   - {fileID: 5691722571163964528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -378,15 +377,12 @@ MonoBehaviour:
   PlayerObj: {fileID: 3608883527897676709}
   ali: {fileID: 4940790171737634208}
   Groundchek: {fileID: 7125757444836378203}
-  WallCheck:
-  - {fileID: 347402740604592651}
-  - {fileID: 7312158824647240883}
+  WallCheck: {fileID: 347402740604592651}
   GroundDistance: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   rb2d: {fileID: 1716780453242158058}
-  isGrounded: 1
 --- !u!1 &4940790171737634208
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,37 +519,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2819291764374527134}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8444086629168218228
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7312158824647240883}
-  m_Layer: 0
-  m_Name: wallCheck3
-  m_TagString: Untagged
-  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7312158824647240883
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444086629168218228}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

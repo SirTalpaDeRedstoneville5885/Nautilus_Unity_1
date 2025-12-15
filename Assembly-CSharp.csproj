@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\FineLivello.cs" />
     <Compile Include="Assets\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\SetVolume.cs" />
+    <Compile Include="Assets\Scripts\GameOver.cs" />
     <Compile Include="Assets\Scripts\SlimePowerUp.cs" />
     <Compile Include="Assets\Scripts\kill.cs" />
     <Compile Include="Assets\Scripts\WingsPowerUp.cs" />

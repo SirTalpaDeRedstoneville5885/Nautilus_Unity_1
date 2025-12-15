@@ -42,7 +42,6 @@ public class Pause : MonoBehaviour
         GameIsPaused = false;
         Resume();
         SceneManager.LoadScene("Menu");
-        if (GameManager.SlimeSbloccato) Destroy(this);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +49,7 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
         AchievementButton.SetActive(false);
+        if (GameManager.SlimeSbloccato) Destroy(AchievementButton);
     }
 
     // Update is called once per frame

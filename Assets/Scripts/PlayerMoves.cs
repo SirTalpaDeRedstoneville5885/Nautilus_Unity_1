@@ -6,19 +6,17 @@ public class PlayerMoves : MonoBehaviour
 {
     [SerializeField] private float Speed, JumpForce;
     [SerializeField] GameObject PlayerObj, ali;
-    [SerializeField] Transform Groundchek;
-    [SerializeField] Transform[] WallCheck;
+    [SerializeField] Transform Groundchek, WallCheck;
     [SerializeField] float GroundDistance;
     [SerializeField] LayerMask groundMask;
     Animator aliAnim;
     public static Animator Anim;
     public Rigidbody2D rb2d;
-    public static bool isWalled, isSlimed = false, isDead = false;
-    bool facingRight;
-    public bool isGrounded = true;
+    public static bool isSlimed = false;
+    bool facingRight, isWalled, isGrounded, isDead = false;
     public static int JumpMax = 1;
     int CJ = 0;
-    float horizontalMovement, Multiplier = 1f, FootstepVolume;
+    float horizontalMovement, Multiplier = 1f, FootstepVolume, WallOffset;
     void Awake()
     {
         JumpMax = 1;
@@ -30,28 +28,23 @@ public class PlayerMoves : MonoBehaviour
         ali.SetActive(false);
         Anim = SpriteManager.ActiveSprite.GetComponent<Animator>();
         if (SpriteManager.Instance.SpriteIndex == 1) isSlimed = true;
+        WallOffset = .4f;
     }
     void Update()
     {
         facingRight = (horizontalMovement > 0) ? true : false;
         // controlla se il player è sotto una certa altezza
-        if (this.transform.position.y <= -20f)
+        if (transform.position.y <= -20f)
         {
-            isDead = true;
             Anim.SetTrigger("LostLife");
-            this.transform.position = Checkpoint.GetActiveCheckpoint();
+            transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;
             StartCoroutine(NonMuoversi());
         }
         isGrounded = Physics2D.OverlapCircle(Groundchek.position, GroundDistance, groundMask);
-        foreach (Transform t in WallCheck)
-        {
-            isWalled = Physics2D.OverlapCircle(t.position, GroundDistance, groundMask);
-            if (isWalled) { break; }
-        }
+        isWalled = Physics2D.OverlapCircle(WallCheck.position, GroundDistance, groundMask);
         Anim.SetBool("isGrounded", isGrounded);
         Anim.SetBool("Walled", (isSlimed && isWalled));
-        if (isWalled) SpriteManager.ActiveSprite.transform.localRotation = (facingRight) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
         if (Input.GetButtonDown("Jump") && (isGrounded || (isSlimed && isWalled)))
         {
             Jump();
@@ -62,7 +55,6 @@ public class PlayerMoves : MonoBehaviour
             CJ++;
             if (JumpMax > 1 && CJ > 1)
             {
-                //ali.GetComponentInParent<Transform>().position += (facingRight) ? new Vector3(-.3f, -.3f, 0) : new Vector3(.3f, .3f, 0);
                 StartCoroutine(ExtraJumpAnimation());
             }
         }
@@ -70,13 +62,24 @@ public class PlayerMoves : MonoBehaviour
         horizontalMovement = Input.GetAxis("Horizontal");
         if (horizontalMovement != 0)
         {
-            if (isGrounded && !SpriteManager.Instance.FootstepsSound.isPlaying)
+            if (isGrounded && !SpriteManager.Instance.FootstepsSound.isPlaying && !isWalled)
             {
                 SpriteManager.Instance.FootstepsSound.pitch = Random.Range(1f, 1.2f);
                 SpriteManager.Instance.FootstepsSound.volume = FootstepVolume;
                 SpriteManager.Instance.FootstepsSound.Play();
             }
-            SpriteManager.ActiveSprite.transform.localRotation = (facingRight) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+            if (facingRight)
+            {
+                SpriteManager.ActiveSprite.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                WallCheck.position = new Vector3(transform.position.x + WallOffset, transform.position.y, transform.position.z);
+                ali.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                SpriteManager.ActiveSprite.transform.localRotation = Quaternion.Euler(0, 180, 0);
+                WallCheck.position = new Vector3(transform.position.x - WallOffset, transform.position.y, transform.position.z);
+                ali.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
             Anim.SetBool("IsWalking", true);
         }
         else
@@ -85,7 +88,6 @@ public class PlayerMoves : MonoBehaviour
         }
 
     }
-    // Update is called once every step (for physics)
     void FixedUpdate()
     {
         if (!isDead)
@@ -94,6 +96,7 @@ public class PlayerMoves : MonoBehaviour
     }
     public IEnumerator NonMuoversi()
     {
+        isDead = true;
         yield return new WaitForSeconds(Anim.GetCurrentAnimatorStateInfo(0).length);
         isDead = false;
     }
@@ -112,21 +115,24 @@ public class PlayerMoves : MonoBehaviour
             Multiplier = 1.5f;
             rb2d.gravityScale = 2f;
             FootstepVolume = Random.Range(1f, 2f);
+            WallOffset = 0.6f;
         }
         if (EXP >= 54)
         {
             PlayerObj.transform.localScale = new Vector3(2.7f, 2.7f, 2.7f);
-            Multiplier *= 1.5f;
+            Multiplier = 2.25f;
             rb2d.gravityScale = 2.5f;
             FootstepVolume = Random.Range(1.2f, 1.4f);
+            WallOffset = 0.8f;
         }
         if (EXP >= 81)
         {
             PlayerObj.transform.localScale = new Vector3(3.6f, 3.6f, 3.6f);
-            Multiplier *= 1.58f;
+            Multiplier = 5f;
             rb2d.gravityScale = 4f;
             FootstepVolume = Random.Range(1.4f, 1.6f);
             Groundchek.position = new Vector3(0f, this.transform.position.y - 0.4f, 0f);
+            WallOffset = 0.9f;
         }
         else FootstepVolume = Random.Range(0.8f, 1.5f);
     }

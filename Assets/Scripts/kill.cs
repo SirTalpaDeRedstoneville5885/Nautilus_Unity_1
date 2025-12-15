@@ -8,7 +8,6 @@ public class kill : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(("Player")))
         {
-            PlayerMoves.isDead = true;
             PlayerMoves.Anim.SetTrigger("LostLife");
             collision.transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;

@@ -422,8 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184f089015407894b97526220296e58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  Player: {fileID: 0}
+  MainCam: {fileID: 389120197}
+  Player: {fileID: 1719494356}
 --- !u!1 &496649189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1005,11 @@ PrefabInstance:
 --- !u!95 &1646580432 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8427583483959108560, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
+  m_PrefabInstance: {fileID: 3875310873221223140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1719494356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3608883527897676709, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
   m_PrefabInstance: {fileID: 3875310873221223140}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1899135467

@@ -29,5 +29,6 @@ public class SpriteManager : MonoBehaviour
             Destroy(this);
         }
         ActiveSprite = PlayerBody[SpriteIndex];
+        ActiveSprite.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 }

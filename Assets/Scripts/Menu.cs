@@ -43,7 +43,8 @@ public class Menu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         CopChar[0].GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-        if (GameManager.SlimeSbloccato) Destroy(CopChar[0]);
+        if (GameManager.SlimeSbloccato)
+            CopChar[0] = null;
     }
 
     public void SelectChar(int SL)
