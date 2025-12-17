@@ -1,10 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused = false, AchievementSlime = false;
     [SerializeField] GameObject pausePanel, OptionPanel, AchievementButton;
     public void Resume()
     {
@@ -37,7 +38,7 @@ public class Pause : MonoBehaviour
         Resume();
         SceneManager.LoadScene(NomeScena);
     }
-    public void Achievement()
+    public void LoadMenu()
     {
         GameIsPaused = false;
         Resume();
@@ -49,7 +50,7 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        if (GameManager.SlimeSbloccato) Destroy(AchievementButton);
+        if (AchievementSlime) AchievementButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,6 +78,16 @@ public class Pause : MonoBehaviour
         {
             Paused();
         }
-        AchievementButton.SetActive(GameManager.SlimeSbloccato);
+        if (GameManager.SlimeSbloccato)
+        {
+            if (!AchievementSlime)
+                AchievementButton.SetActive(true);
+            StartCoroutine(AspettaAchievement(AchievementSlime, 60f));
+        }
+    }
+    IEnumerator AspettaAchievement(bool T, float s)
+    {
+        yield return s;
+        T = true;
     }
 }

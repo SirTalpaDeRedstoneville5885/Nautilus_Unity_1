@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -5,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] GameObject pos1, pos2, pos3, nextPos;
     [SerializeField] float speed;
     [SerializeField] GameObject enemyBody;
+    [SerializeField] String Tipologia;
     //[SerializeField] Animator Anim;
     [SerializeField] GameObject EnemyAnimBody;
     bool lap = true;
@@ -38,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
                 nextPos = pos3;
             }
         }
-        //Anim.SetBool("Moving", lap);
-        EnemyAnimBody.transform.localRotation = (lap) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+        if (Tipologia == "NonSlime") EnemyAnimBody.transform.localRotation = lap ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
+        else EnemyAnimBody.transform.localRotation = lap ? Quaternion.Euler(180, 0, 90) : Quaternion.Euler(0, 0, 90);
     }
 }

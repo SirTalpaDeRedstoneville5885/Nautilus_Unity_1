@@ -5,13 +5,13 @@ using UnityEngine.Assertions.Must;
 public class PlayerMoves : MonoBehaviour
 {
     [SerializeField] private float Speed, JumpForce;
-    [SerializeField] GameObject PlayerObj, ali;
+    [SerializeField] GameObject ali;
     [SerializeField] Transform Groundchek, WallCheck;
     [SerializeField] float GroundDistance;
     [SerializeField] LayerMask groundMask;
     Animator aliAnim;
     public static Animator Anim;
-    public Rigidbody2D rb2d;
+    [SerializeField] Rigidbody2D rb2d;
     public static bool isSlimed = false;
     bool facingRight, isWalled, isGrounded, isDead = false;
     public static int JumpMax = 1;
@@ -20,11 +20,11 @@ public class PlayerMoves : MonoBehaviour
     void Awake()
     {
         JumpMax = 1;
-        Anim = SpriteManager.ActiveSprite.GetComponent<Animator>();
         aliAnim = ali.GetComponent<Animator>();
     }
     void Start()
     {
+        Anim = SpriteManager.ActiveSprite.GetComponent<Animator>();
         ali.SetActive(false);
         Anim = SpriteManager.ActiveSprite.GetComponent<Animator>();
         if (SpriteManager.Instance.SpriteIndex == 1) isSlimed = true;
@@ -111,7 +111,7 @@ public class PlayerMoves : MonoBehaviour
     {
         if (EXP >= 27)
         {
-            PlayerObj.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+            transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
             Multiplier = 1.5f;
             rb2d.gravityScale = 2f;
             FootstepVolume = Random.Range(1f, 2f);
@@ -119,7 +119,7 @@ public class PlayerMoves : MonoBehaviour
         }
         if (EXP >= 54)
         {
-            PlayerObj.transform.localScale = new Vector3(2.7f, 2.7f, 2.7f);
+            transform.localScale = new Vector3(2.7f, 2.7f, 2.7f);
             Multiplier = 2.25f;
             rb2d.gravityScale = 2.5f;
             FootstepVolume = Random.Range(1.2f, 1.4f);
@@ -127,12 +127,12 @@ public class PlayerMoves : MonoBehaviour
         }
         if (EXP >= 81)
         {
-            PlayerObj.transform.localScale = new Vector3(3.6f, 3.6f, 3.6f);
+            transform.localScale = new Vector3(3.6f, 3.6f, 3.6f);
             Multiplier = 5f;
             rb2d.gravityScale = 4f;
             FootstepVolume = Random.Range(1.4f, 1.6f);
-            Groundchek.position = new Vector3(0f, this.transform.position.y - 0.4f, 0f);
-            WallOffset = 0.9f;
+            Groundchek.position = (Groundchek.position == new Vector3(Groundchek.position.x, transform.position.y - 1.62f, Groundchek.position.z)) ? new Vector3(Groundchek.position.x, Groundchek.position.y, Groundchek.position.z) : new Vector3(Groundchek.position.x, transform.position.y - 1.62f, Groundchek.position.z);
+            WallOffset = 1.44f;
         }
         else FootstepVolume = Random.Range(0.8f, 1.5f);
     }

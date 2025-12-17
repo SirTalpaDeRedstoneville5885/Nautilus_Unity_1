@@ -9,13 +9,15 @@ public class SpriteManager : MonoBehaviour
     public AudioSource FootstepsSound;
     void Start()
     {
+        ActiveSprite = PlayerBody[SpriteIndex];
+        ActiveSprite.transform.localScale = new Vector3(1f, 1f, 1f);
         foreach (GameObject t in PlayerBody)
         {
             t.SetActive(false);
         }
         ActiveSprite.SetActive(true);
         if (SpriteIndex == 0) FootstepsSound = AudioManager.Instance.AudioList[3].GetComponent<AudioSource>();
-        if (SpriteIndex == 1) FootstepsSound = AudioManager.Instance.AudioList[6];
+        if (SpriteIndex == 1) FootstepsSound = AudioManager.Instance.AudioList[6].GetComponent<AudioSource>();
     }
     void Awake()
     {
@@ -28,7 +30,9 @@ public class SpriteManager : MonoBehaviour
         {
             Destroy(this);
         }
-        ActiveSprite = PlayerBody[SpriteIndex];
-        ActiveSprite.transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+    void Update()
+    {
+        ActiveSprite.SetActive(true);
     }
 }
