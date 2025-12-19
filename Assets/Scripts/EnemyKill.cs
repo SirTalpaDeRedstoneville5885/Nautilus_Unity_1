@@ -3,7 +3,6 @@ using UnityEngine;
 public class EnemyKill : MonoBehaviour
 {
     [SerializeField] GameObject Enemy;
-    [SerializeField] bool HasDrop = false;
     [SerializeField] GameObject Drop;
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,7 +10,7 @@ public class EnemyKill : MonoBehaviour
         {
             collision.transform.GetComponent<PlayerMoves>().Jump();
             GameManager.Monete += 10;
-            if (HasDrop) Instantiate(Drop, new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), transform.rotation);
+            if (Drop != null) Instantiate(Drop, new Vector3(transform.position.x, transform.position.y - .5f, transform.position.z), transform.rotation);
             Destroy(Enemy);
         }
     }

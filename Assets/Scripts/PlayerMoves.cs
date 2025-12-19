@@ -114,7 +114,10 @@ public class PlayerMoves : MonoBehaviour
         // controlla se si e' morti, e in caso azzera la velocità o la rende pari al valore preso, la velocità e un moltiplicatore
         // gestito dalla funzione Cresci, che qua viene chiamata
         rb2d.linearVelocity = isDead ? NonMuoversi() : new Vector2(horizontalMovement * Speed * Multiplier, rb2d.linearVelocity.y);
+
         Cresci(GameManager.Monete);
+
+
     }
     /*void LateUpdate()
     {
@@ -149,7 +152,6 @@ public class PlayerMoves : MonoBehaviour
                     Groundchek.position = (Groundchek.position == new Vector3(Groundchek.position.x, transform.position.y - 1.62f, Groundchek.position.z)) ? new Vector3(Groundchek.position.x, Groundchek.position.y, Groundchek.position.z) : new Vector3(Groundchek.position.x, transform.position.y - 1.62f, Groundchek.position.z);
                     ali.transform.position = (ali.transform.position == new Vector3(transform.position.x - 0.666664f, transform.position.y - 0.5f, ali.transform.position.z)) ? new Vector3(transform.position.x - 0.666664f, transform.position.y - 0.5f, ali.transform.position.z) : new Vector3(ali.transform.position.x, ali.transform.position.y, ali.transform.position.z);
                     WallOffset = 1.44f;
-                    Debug.Log("Max Size");
                     break;
                 }
             case >= 54:
@@ -159,7 +161,6 @@ public class PlayerMoves : MonoBehaviour
                     rb2d.gravityScale = 2.5f;
                     FootstepVolume = Random.Range(1.2f, 1.4f);
                     WallOffset = 0.8f;
-                    Debug.Log("Medium Size");
                     break;
                 }
             case >= 27:
@@ -169,7 +170,6 @@ public class PlayerMoves : MonoBehaviour
                     rb2d.gravityScale = 2f;
                     FootstepVolume = Random.Range(1f, 2f);
                     WallOffset = 0.6f;
-                    Debug.Log("Mini Size");
                     break;
                 }
             default:

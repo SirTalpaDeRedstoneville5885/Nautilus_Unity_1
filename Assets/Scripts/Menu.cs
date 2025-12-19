@@ -9,7 +9,6 @@ public class Menu : MonoBehaviour
     public bool SlimeDebug;
     [SerializeField] GameObject MenuPanel, CharacterPanel, CreditPanel, Frame;
     [SerializeField] GameObject[] BottoniChar, CopChar;
-    [SerializeField] AudioSource LockedSound;
     private void DisattivaTranne(GameObject Ciccio)
     {
         MenuPanel.SetActive(false);
@@ -29,7 +28,7 @@ public class Menu : MonoBehaviour
     public void LockedChar(int SL)
     {
         CopChar[SL].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(true);
-        LockedSound.Play();
+        AudioManager.Instance.AudioList[5].Play();
     }
     public void CloseChars()
     {
@@ -54,7 +53,6 @@ public class Menu : MonoBehaviour
     {
         SpriteManager.Instance.SpriteIndex = SL;
         Frame.transform.position = BottoniChar[SL].GetComponent<Transform>().position;
-        DontDestroyOnLoad(SpriteManager.Instance);
     }
     public void Credits()
     {

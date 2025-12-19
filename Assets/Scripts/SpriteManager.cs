@@ -31,8 +31,8 @@ public class SpriteManager : MonoBehaviour
             Destroy(this);
         }
     }
-    void Update()
+    void OnDestroy()
     {
-        ActiveSprite.SetActive(true);
+        DontDestroyOnLoad(Instance);
     }
 }
