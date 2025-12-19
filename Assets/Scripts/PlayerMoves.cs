@@ -27,35 +27,41 @@ public class PlayerMoves : MonoBehaviour
         ali.SetActive(false);
         aliAnim = ali.GetComponent<Animator>();
         Anim = SpriteManager.ActiveSprite.GetComponent<Animator>();
-        if (SpriteManager.Instance.SpriteIndex == 1) isSlimed = true;
+        if (SpriteManager.Instance.SpriteIndex == 1)
+        {
+            isSlimed = true;
+            rb2d.sharedMaterial = null;
+        }
         WallOffset = .4f;
     }
     void Update()
     {
-        facingRight = (horizontalMovement > 0) ? true : false;
-        // controlla se il player è sotto una certa altezza
+        facingRight = (horizontalMovement > 0) ? true : false; // in base a se la veloità di movimento del player e' positiva, setta il bool
         if (transform.position.y <= -20f)
+        // controlla se il player e' sotto una certa altezza, e in caso lo uccide, andando a chiamare una sola volta l'animazione di morte
         {
-            deadboll = false;
             transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;
+            NonMuoversi();
             if (deadboll)
             {
                 Anim.SetTrigger("LostLife");
                 deadboll = false;
             }
-            NonMuoversi();
         }
-        isGrounded = Physics2D.OverlapCircle(Groundchek.position, GroundDistance, groundMask);
-        isWalled = Physics2D.OverlapCircle(WallCheck.position, GroundDistance, groundMask);
-        Anim.SetBool("isGrounded", isGrounded);
-        Anim.SetBool("Walled", (isSlimed && isWalled));
+        isGrounded = Physics2D.OverlapCircle(Groundchek.position, GroundDistance, groundMask); // crea un cerchio di raggio GroundDistanca con centro Groundcheck.position e controlla se si interseca con un layer del tipo GroundMask
+        isWalled = Physics2D.OverlapCircle(WallCheck.position, GroundDistance, groundMask); // come sopra, ma con wallcheck.position come come centro
+        Anim.SetBool("isGrounded", isGrounded); // Resetta il bool dell'animator che serve a mandarlo in idle
+        Anim.SetBool("Walled", (isSlimed && isWalled)); // avvia l'animazione di stare al muro solo se e' sia attaccato a un muro che isSlimed
         if (Input.GetButtonDown("Jump") && (isGrounded || (isSlimed && isWalled)))
+        // salta se e' a terra o e' sia attaccato al muro che isSlimed
         {
             Jump();
         }
-        else if (Input.GetButtonDown("Jump") && (!isGrounded || (isSlimed && isWalled)) && CJ < JumpMax)
+        else if (Input.GetButtonDown("Jump") && !isGrounded && CJ < JumpMax)
         {
+            // se si salta, non e' a terra e il numero di salti e' inferiore al JumpMax, salta di nuovo
+            // ma se salti più di quanto viene inizializzato il JumpMax, avvia l'animazione di saltoExtra 
             Jump();
             CJ++;
             if (JumpMax > 1 && CJ > 1)
@@ -63,8 +69,9 @@ public class PlayerMoves : MonoBehaviour
                 StartCoroutine(ExtraJumpAnimation());
             }
         }
-        if (isGrounded || (isSlimed && isWalled)) CJ = 0;
-        if (!isDead) // Gestisce 
+        if (isGrounded || (isSlimed && isWalled)) CJ = 0; // se tocchi terra o un muro con isSlimed, azzera i salti effettuati
+        if (!isDead)
+        // Aggiorna la direzione degli sprite del player, riproduce i passi, e controlla quando parte l'animazione di camminata e di morte
         {
             horizontalMovement = Input.GetAxis("Horizontal");
             if (horizontalMovement != 0)
@@ -94,6 +101,7 @@ public class PlayerMoves : MonoBehaviour
                 Anim.SetBool("IsWalking", false);
             }
         }
+        // Cambia un float in base al tempo fino a quando non si azzera, e quindi lo resetta
         if (isDead) Timer -= Time.deltaTime;
         if (Timer < 0)
         {
@@ -103,6 +111,8 @@ public class PlayerMoves : MonoBehaviour
     }
     void FixedUpdate()
     {
+        // controlla se si e' morti, e in caso azzera la velocità o la rende pari al valore preso, la velocità e un moltiplicatore
+        // gestito dalla funzione Cresci, che qua viene chiamata
         rb2d.linearVelocity = isDead ? NonMuoversi() : new Vector2(horizontalMovement * Speed * Multiplier, rb2d.linearVelocity.y);
         Cresci(GameManager.Monete);
     }
@@ -114,6 +124,7 @@ public class PlayerMoves : MonoBehaviour
     public Vector2 NonMuoversi()
     {
         isDead = true;
+        deadboll = true;
         return new Vector2(0, rb2d.linearVelocity.y);
     }
     IEnumerator ExtraJumpAnimation()
@@ -125,6 +136,8 @@ public class PlayerMoves : MonoBehaviour
     }
     void Cresci(int EXP)
     {
+        // crea uno switch che, in base all'intero dato, cambia dimensione, il moltiplicatore di velocità, la gravità, il volume dei passi
+        // e se necessario la posizione di groundCheck, wallCheck e ali
         switch (EXP)
         {
             case >= 81:
@@ -168,6 +181,7 @@ public class PlayerMoves : MonoBehaviour
     }
     public void Jump()
     {
+        //azzera la forza di movimento verticale, e aggiunge una forza impulsiva
         Anim.SetTrigger("Jumping");
         rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0);
         rb2d.AddForce(Vector2.up * JumpForce * Multiplier, ForceMode2D.Impulse);

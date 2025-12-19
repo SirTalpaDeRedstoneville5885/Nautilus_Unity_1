@@ -50,7 +50,7 @@ MonoBehaviour:
   PlayerBody:
   - {fileID: 2564435268320129396}
   - {fileID: 9108298481484082406}
-  SpriteIndex: -1
+  SpriteIndex: 1
   FootstepsSound: {fileID: 0}
 --- !u!1 &2564435268320129396
 GameObject:
@@ -374,7 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   JumpForce: 5
-  PlayerObj: {fileID: 3608883527897676709}
   ali: {fileID: 4940790171737634208}
   Groundchek: {fileID: 7125757444836378203}
   WallCheck: {fileID: 347402740604592651}
@@ -687,7 +686,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -904673745, guid: 61d158e979e90c0409a4cf440dff5b2e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2, y: 1}
