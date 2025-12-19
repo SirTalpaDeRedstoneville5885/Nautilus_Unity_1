@@ -26,15 +26,18 @@ public class Menu : MonoBehaviour
     {
         DisattivaTranne(CharacterPanel);
     }
-    public void LockedChar()
+    public void LockedChar(int SL)
     {
-        CopChar[0].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(true);
+        CopChar[SL].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(true);
         LockedSound.Play();
     }
     public void CloseChars()
     {
         DisattivaTranne(MenuPanel);
-        CopChar[0].GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(false);
+        foreach (GameObject t in CopChar)
+        {
+            t.GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(false);
+        }
     }
     void Start()
     {
@@ -51,6 +54,7 @@ public class Menu : MonoBehaviour
     {
         SpriteManager.Instance.SpriteIndex = SL;
         Frame.transform.position = BottoniChar[SL].GetComponent<Transform>().position;
+        DontDestroyOnLoad(SpriteManager.Instance);
     }
     public void Credits()
     {

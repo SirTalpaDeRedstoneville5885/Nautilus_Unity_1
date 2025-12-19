@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
         TestoMonete.text = Monete.ToString();
         TestoVite.text = Vite.ToString();
         TestoSalti.text = CalcolaSalti();
-
         if (Vite <= 0)
         {
             SceneManager.LoadScene("GameOver");
