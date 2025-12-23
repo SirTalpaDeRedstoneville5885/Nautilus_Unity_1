@@ -51,7 +51,7 @@ public class Menu : MonoBehaviour
 
     public void SelectChar(int SL)
     {
-        SpriteManager.Instance.SpriteIndex = SL;
+        SpriteManager.Instance.ActiveSprite = SpriteManager.Instance.PlayerBody[SL];
         Frame.transform.position = BottoniChar[SL].GetComponent<Transform>().position;
     }
     public void Credits()

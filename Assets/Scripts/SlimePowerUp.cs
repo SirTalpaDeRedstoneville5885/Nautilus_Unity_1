@@ -11,7 +11,7 @@ public class SlimePowerUp : MonoBehaviour
         if (collision.gameObject.CompareTag(("Player")) && !PlayerMoves.isSlimed)
         {
             collision.gameObject.GetComponent<Rigidbody2D>().sharedMaterial = null;
-            SpriteManager.ActiveSprite.GetComponent<SpriteRenderer>().material.color = Color.green;
+            SpriteManager.Instance.ActiveSprite.GetComponent<SpriteRenderer>().material.color = Color.green;
             PlayerMoves.isSlimed = true;
         }
         else GameManager.Monete += 10;

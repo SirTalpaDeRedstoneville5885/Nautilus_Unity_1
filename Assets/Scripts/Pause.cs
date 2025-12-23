@@ -12,7 +12,7 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        if (AchievementSlime) AchievementButton.SetActive(false);
+        if (AchievementSlime || SpriteManager.Instance.ActiveSprite == SpriteManager.Instance.PlayerBody[1]) AchievementButton.SetActive(false);
     }
     void Update()
     {

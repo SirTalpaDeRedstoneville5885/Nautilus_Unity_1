@@ -4,35 +4,28 @@ public class SpriteManager : MonoBehaviour
 {
     public static SpriteManager Instance;
     [SerializeField] public GameObject[] PlayerBody;
-    public int SpriteIndex = -1;
-    public static GameObject ActiveSprite;
-    public AudioSource FootstepsSound;
-    void Start()
+    [SerializeField] public GameObject AliBody;
+    public GameObject ActiveSprite;
+    void Awake()
     {
-        ActiveSprite = PlayerBody[SpriteIndex];
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(this);
+            Destroy(gameObject);
+        }
+    }
+    void OnEnable() // in modo che sia dopo l'awake e prima dello start
+    {
+        if (ActiveSprite == null) ActiveSprite = PlayerBody[0];
         ActiveSprite.transform.localScale = new Vector3(1f, 1f, 1f);
         foreach (GameObject t in PlayerBody)
         {
             t.SetActive(false);
         }
-        ActiveSprite.SetActive(true);
-        if (SpriteIndex == 0) FootstepsSound = AudioManager.Instance.AudioList[3].GetComponent<AudioSource>();
-        if (SpriteIndex == 1) FootstepsSound = AudioManager.Instance.AudioList[6].GetComponent<AudioSource>();
-    }
-    void Awake()
-    {
-        if (SpriteIndex < 0) SpriteIndex = 0;
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
-    void OnDestroy()
-    {
-        DontDestroyOnLoad(Instance);
     }
 }

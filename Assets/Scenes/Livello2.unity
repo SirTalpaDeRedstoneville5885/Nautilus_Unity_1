@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 1303342055431907883, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: Anim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 1303342055431907883, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: EnemyAnimBody
       value: 
@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 1602775312791349488, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716988856008760794, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.36
@@ -768,7 +768,7 @@ PrefabInstance:
     - target: {fileID: 1602775312791349488, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716988856008760794, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.89
@@ -987,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 1602775312791349488, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716988856008760794, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.78
@@ -1053,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 1602775312791349488, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716988856008760794, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.83
@@ -1114,7 +1114,7 @@ PrefabInstance:
     - target: {fileID: 1602775312791349488, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716988856008760794, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.03
@@ -1160,11 +1160,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 801aff3365e5ebe458309a3e5ac6697f, type: 3}
---- !u!95 &1646580432 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 8427583483959108560, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
-  m_PrefabInstance: {fileID: 3875310873221223140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1719494356 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3608883527897676709, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
@@ -1429,18 +1424,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3533407019311372206, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3533407019311372206, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3533407019311372206, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3608883527897676709, guid: 15114f0a304e2b345b21cbe4c30afedd, type: 3}
       propertyPath: m_Name
       value: player
@@ -1518,7 +1501,7 @@ PrefabInstance:
     - target: {fileID: 2853677388351027175, guid: 2ef3a4bf5a7f11c4db4aa599482318ec, type: 3}
       propertyPath: PlayerBodyAnim
       value: 
-      objectReference: {fileID: 1646580432}
+      objectReference: {fileID: 0}
     - target: {fileID: 4987307476220129631, guid: 2ef3a4bf5a7f11c4db4aa599482318ec, type: 3}
       propertyPath: m_Name
       value: respawner
