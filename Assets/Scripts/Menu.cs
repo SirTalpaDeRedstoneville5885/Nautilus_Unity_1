@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     public bool SlimeDebug;
     [SerializeField] GameObject MenuPanel, CharacterPanel, CreditPanel, Frame;
     [SerializeField] GameObject[] BottoniChar, CopChar;
-    private void DisattivaTranne(GameObject Ciccio)
+    void DisattivaTranne(GameObject Ciccio)
     {
         MenuPanel.SetActive(false);
         CharacterPanel.SetActive(false);
@@ -38,15 +38,20 @@ public class Menu : MonoBehaviour
             t.GetComponentInChildren<TextMeshProUGUI>(true).gameObject.SetActive(false);
         }
     }
+    void OnEnable()
+    {
+        if (GameManager.SlimeSbloccato)
+            CopChar[0].SetActive(false);
+    }
     void Start()
     {
         GameManager.SlimeSbloccato = SlimeDebug;
+        Pause.AchievementSlime = SlimeDebug;
         DisattivaTranne(MenuPanel);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         CopChar[0].GetComponentInChildren<TextMeshProUGUI>().gameObject.SetActive(false);
-        if (GameManager.SlimeSbloccato)
-            CopChar[0].SetActive(false);
+        if (AudioManager.Instance.AudioList[0].isPlaying) AudioManager.Instance.AudioList[0].Stop();
     }
 
     public void SelectChar(int SL)

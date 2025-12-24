@@ -12,7 +12,7 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        if (AchievementSlime || SpriteManager.Instance.ActiveSprite == SpriteManager.Instance.PlayerBody[1]) AchievementButton.SetActive(false);
+        if (GameManager.SlimeSbloccato) AchievementButton.SetActive(false);
     }
     void Update()
     {
@@ -38,12 +38,11 @@ public class Pause : MonoBehaviour
         {
             Paused();
         }
-        if (GameManager.SlimeSbloccato)
+        if (GameManager.SlimeSbloccato && !AchievementSlime)
         {
-            if (!AchievementSlime)
-                AchievementButton.SetActive(true);
+            AchievementButton.SetActive(true);
             tm += Time.deltaTime;
-            if (tm > 60f)
+            if (tm > 8f)
             {
                 AchievementButton.SetActive(false);
                 AchievementSlime = true;
@@ -77,6 +76,9 @@ public class Pause : MonoBehaviour
     }
     public void LoadaScene(string NomeScena)
     {
+        PlayerMoves.JumpMax = 1;
+        SpriteManager.Instance.ActiveSprite.GetComponent<SpriteRenderer>().material.color = Color.white;
+        if (SpriteManager.Instance.ActiveSprite != SpriteManager.Instance.PlayerBody[1]) PlayerMoves.isSlimed = false;
         GameIsPaused = false;
         Resume();
         SceneManager.LoadScene(NomeScena);

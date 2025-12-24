@@ -1973,7 +1973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a766c5df9bc8489bc7f36e11e0c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlimeDebug: 1
+  SlimeDebug: 0
   MenuPanel: {fileID: 1765623323}
   CharacterPanel: {fileID: 1746101219}
   CreditPanel: {fileID: 1252037465}

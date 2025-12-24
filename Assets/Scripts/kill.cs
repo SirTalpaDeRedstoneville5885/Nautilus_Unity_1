@@ -10,9 +10,10 @@ public class kill : MonoBehaviour
         {
             collision.transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;
-            PlayerMoves.Anim.SetTrigger("LostLife");
+            SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetTrigger("LostLife");
             if (!PlayerMoves.isDead)
                 collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = collision.gameObject.GetComponent<PlayerMoves>().NonMuoversi();
             else PlayerMoves.isDead = false;
+        }
     }
-}}
+}
