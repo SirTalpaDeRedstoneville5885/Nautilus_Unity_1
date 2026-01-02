@@ -11,7 +11,7 @@ public class WingsPowerUp : MonoBehaviour
         {
             AudioManager.Instance.AudioList[7].Play();
             Done = true;
-            PlayerMoves.JumpMax++;
+            PlayerMoves.JumpToDo++;
             Destroy(gameObject);
         }
     }

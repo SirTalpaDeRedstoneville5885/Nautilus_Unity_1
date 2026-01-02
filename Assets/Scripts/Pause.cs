@@ -76,7 +76,7 @@ public class Pause : MonoBehaviour
     }
     public void LoadaScene(string NomeScena)
     {
-        PlayerMoves.JumpMax = 1;
+        PlayerMoves.JumpToDo = 1;
         SpriteManager.Instance.ActiveSprite.GetComponent<SpriteRenderer>().material.color = Color.white;
         if (SpriteManager.Instance.ActiveSprite != SpriteManager.Instance.PlayerBody[1]) PlayerMoves.isSlimed = false;
         GameIsPaused = false;

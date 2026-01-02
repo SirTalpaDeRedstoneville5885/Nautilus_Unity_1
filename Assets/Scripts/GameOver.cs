@@ -13,6 +13,7 @@ public class GameOver : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        Destroy(SpriteManager.Instance.gameObject);
     }
 }
 

@@ -2,20 +2,20 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.UIElements;
 public class PlayerMoves : MonoBehaviour
 {
     [SerializeField] private float Speed, JumpForce;
     [SerializeField] Transform Groundchek, WallCheck;
     [SerializeField] float GroundDistance;
     [SerializeField] LayerMask groundMask;
-    Animator aliAnimT;
-    public static Animator AnimT;
     [SerializeField] Rigidbody2D rb2d;
     public static bool isSlimed = false, isDead = false;
     bool facingRight, isWalled, isGrounded;
-    public static int JumpMax = 1;
+    public static int JumpToDo = 0;
     public static float Multiplier;
     int CJ = 0;
+    [SerializeField] int JumpMax = 0;
     float horizontalMovement, FootstepVolume, WallOffset, Timer = 2f;
     AudioSource FootstepsSound;
     void Start()
@@ -26,11 +26,9 @@ public class PlayerMoves : MonoBehaviour
         SpriteManager.Instance.ActiveSprite.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
         Multiplier = 1f;
         WallOffset = .4f;
-        // disattiva le ali e attiva lo sprite principale, poi copia gli animator in due variabili, in modo da essere facilmente accesibili
+        // disattiva le ali e attiva lo sprite principale
         SpriteManager.Instance.AliBody.SetActive(false);
         SpriteManager.Instance.ActiveSprite.SetActive(true);
-        aliAnimT = SpriteManager.Instance.AliBody.GetComponent<Animator>();
-        AnimT = SpriteManager.Instance.ActiveSprite.GetComponent<Animator>();
         // controlla che sprite e' attivo, e setta le variabili per cambiare lo stile di gameplay e i suoni dei passi 
         if (SpriteManager.Instance.ActiveSprite == SpriteManager.Instance.PlayerBody[1])
         {
@@ -50,12 +48,14 @@ public class PlayerMoves : MonoBehaviour
             transform.position = Checkpoint.GetActiveCheckpoint();
             GameManager.Vite--;
             NonMuoversi();
-            AnimT.SetTrigger("LostLife");
+            float SizeTimer = 2 * Time.deltaTime;
+            transform.localScale = new Vector3(transform.localScale.x + SizeTimer, transform.localScale.y + SizeTimer, transform.localScale.z + SizeTimer);
+            SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetTrigger("LostLife");
         }
         isGrounded = Physics2D.OverlapCircle(Groundchek.position, GroundDistance, groundMask); // crea un cerchio di raggio GroundDistanca con centro Groundcheck.position e controlla se si interseca con un layer del tipo GroundMask
         isWalled = Physics2D.OverlapCircle(WallCheck.position, GroundDistance, groundMask); // come sopra, ma con wallcheck.position come come centro
-        AnimT.SetBool("isGrounded", isGrounded); // Resetta il bool dell'animator che serve a mandarlo in idle
-        AnimT.SetBool("Walled", (isSlimed && isWalled)); // avvia l'animazione di stare al muro solo se e' sia attaccato a un muro che isSlimed
+        SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetBool("isGrounded", isGrounded); // Resetta il bool dell'animator che serve a mandarlo in idle
+        SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetBool("Walled", isSlimed && isWalled); // avvia l'animazione di stare al muro solo se e' sia attaccato a un muro che isSlimed
         if (isGrounded || (isSlimed && isWalled)) CJ = 0; // se tocchi terra o un muro con isSlimed, azzera i salti effettuati
         if (!isDead)
         // Aggiorna la direzione degli sprite del player, riproduce i suoni dei passi, salta e controlla quando parte l'animazione di camminata e di morte
@@ -66,20 +66,20 @@ public class PlayerMoves : MonoBehaviour
             {
                 Jump();
             }
-            else if (Input.GetButtonDown("Jump") && !isGrounded && CJ < JumpMax)
+            else if (Input.GetButtonDown("Jump") && !isGrounded && CJ < JumpToDo)
             {
-                // se si salta, non e' a terra e il numero di salti e' inferiore al JumpMax, salta di nuovo
-                // ma se salti più di quanto viene inizializzato il JumpMax, avvia l'animazione di saltoExtra 
+                // se si salta, non e' a terra e il numero di salti e' inferiore al JumpToDo, salta di nuovo
+                // ma se salti più di quanto viene inizializzato il JumpToDo, avvia l'animazione di saltoExtra 
                 Jump();
                 CJ++;
-                if (JumpMax > 1 && CJ > 1)
+                if (JumpToDo > JumpMax && CJ > JumpMax)
                 {
                     StartCoroutine(ExtraJumpAnimation());
                 }
             }
             if (horizontalMovement != 0)
             {
-                AnimT.SetBool("IsWalking", true);
+                SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetBool("IsWalking", true);
                 if (isGrounded && !FootstepsSound.isPlaying && !isWalled)
                 // Gestisce l'audio dei passi
                 {
@@ -102,7 +102,7 @@ public class PlayerMoves : MonoBehaviour
             }
             else
             {
-                AnimT.SetBool("IsWalking", false);
+                SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetBool("IsWalking", false);
             }
         }
         else
@@ -125,12 +125,13 @@ public class PlayerMoves : MonoBehaviour
     void LateUpdate()
     {
         // 
-        Cresci(GameManager.Monete);
-        SpriteManager.Instance.AliBody.transform.position = new Vector3(transform.position.x - 0.09375f, transform.position.y - 0.09375f, transform.position.z);
+        if (!isDead) Cresci(GameManager.Monete);
+        SpriteManager.Instance.AliBody.transform.position = new Vector3(transform.position.x - 0.09375f, transform.position.y - 0.3f, transform.position.z);
         SpriteManager.Instance.ActiveSprite.transform.position = transform.position;
     }
     public Vector2 NonMuoversi()
     {
+        // azzera la velocita' del rigidbody e cambia lo stato del bool isDead (per lo script kill.cs)
         isDead = true;
         return new Vector2(0, 0);
     }
@@ -138,9 +139,9 @@ public class PlayerMoves : MonoBehaviour
     {
         // attiva le ali, avvia l'animazione e il suono, e quando finisce l'animazione disattiva le ali
         SpriteManager.Instance.AliBody.SetActive(true);
-        aliAnimT.SetTrigger("JumpExtra");
+        SpriteManager.Instance.AliBody.GetComponent<Animator>().SetTrigger("JumpExtra");
         AudioManager.Instance.AudioList[7].Play();
-        yield return new WaitForSeconds(aliAnimT.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(SpriteManager.Instance.AliBody.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         SpriteManager.Instance.AliBody.SetActive(false);
     }
     void Cresci(int EXP)
@@ -194,7 +195,7 @@ public class PlayerMoves : MonoBehaviour
     public void Jump()
     {
         //azzera la forza di movimento verticale, e aggiunge una forza impulsiva
-        AnimT.SetTrigger("Jumping");
+        SpriteManager.Instance.ActiveSprite.GetComponent<Animator>().SetTrigger("Jumping");
         rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, 0);
         rb2d.AddForce(Vector2.up * JumpForce * Multiplier, ForceMode2D.Impulse);
         AudioManager.Instance.AudioList[2].Play();
