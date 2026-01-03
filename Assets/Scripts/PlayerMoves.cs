@@ -12,11 +12,11 @@ public class PlayerMoves : MonoBehaviour
     [SerializeField] Rigidbody2D rb2d;
     public static bool isSlimed = false, isDead = false;
     bool facingRight, isWalled, isGrounded;
-    public static int JumpToDo = 0;
+    public static int JumpToDo;
     public static float Multiplier;
     int CJ = 0;
     [SerializeField] int JumpMax = 0;
-    float horizontalMovement, FootstepVolume, WallOffset, Timer = 2f;
+    float horizontalMovement, FootstepVolume, WallOffset, Timer = 3f;
     AudioSource FootstepsSound;
     void Start()
     {
@@ -24,8 +24,10 @@ public class PlayerMoves : MonoBehaviour
         // cosi ogni volta che viene caricata la scena (per esempio nel retry) sono in default
         transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
         SpriteManager.Instance.ActiveSprite.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
+        SpriteManager.Instance.AliBody.transform.localScale = new Vector3(1f, 1f, 1f);
         Multiplier = 1f;
         WallOffset = .4f;
+        JumpToDo = 0;
         // disattiva le ali e attiva lo sprite principale
         SpriteManager.Instance.AliBody.SetActive(false);
         SpriteManager.Instance.ActiveSprite.SetActive(true);
@@ -112,7 +114,7 @@ public class PlayerMoves : MonoBehaviour
             if (Timer < 0)
             {
                 isDead = false;
-                Timer = 2f;
+                Timer = 3f;
             }
         }
     }
@@ -201,4 +203,3 @@ public class PlayerMoves : MonoBehaviour
         AudioManager.Instance.AudioList[2].Play();
     }
 }
-//https://www.smbgames.be/super-mario-brothers.php

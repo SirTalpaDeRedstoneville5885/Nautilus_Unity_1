@@ -10,6 +10,7 @@ public class Checkpoint : MonoBehaviour
 
     public static Vector3 GetActiveCheckpoint()
     {
+        // restituisce la posizione dell'ultimo checkpoint attivato o 0,0,0
         Vector3 result = new Vector3(0, 0, 0);
         if (CheckPointList != null)
         {
@@ -26,6 +27,7 @@ public class Checkpoint : MonoBehaviour
     }
     private void ActivateCheckPoint()
     {
+        //disattiva tutti i checkpoint tranne quello appena toccato, e crea delle particelle temporanee
         foreach (GameObject cp in CheckPointList)
         {
             cp.GetComponent<Checkpoint>().Activated = false;
@@ -34,13 +36,11 @@ public class Checkpoint : MonoBehaviour
         GameObject particlesClone = Instantiate(particles, transform.position, transform.rotation);
         Destroy(particlesClone, 2f);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // crea un'array di tutti gli oggetti col tag Checkpoint
         CheckPointList = GameObject.FindGameObjectsWithTag("Checkpoint");
     }
-
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !this.Activated)

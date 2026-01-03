@@ -1,28 +1,10 @@
 fileFormatVersion: 2
-guid: bd276a7292737164b98127e83ef4d199
+guid: bad0f27be2bfe9545b6121047e47ba3a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2021340346759023186
-    second: SuperMarioSpriteSheet_0
-  - first:
-      213: -5058725692260659483
-    second: SuperMarioSpriteSheet_1
-  - first:
-      213: 1038231057499586723
-    second: SuperMarioSpriteSheet_2
-  - first:
-      213: -6057606489073179849
-    second: SuperMarioSpriteSheet_3
-  - first:
-      213: -5363647521272666559
-    second: SuperMarioSpriteSheet_4
-  - first:
-      213: 3351468488652643319
-    second: SuperMarioSpriteSheet_5
-  - first:
-      213: 7286304226844060360
-    second: SuperMarioSpriteSheet_6
+      213: 6826179487278835937
+    second: PlayStation - Castlevania_ Symphony of the Night - Objects - Test Tubes_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 46
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -114,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SuperMarioSpriteSheet_1
+      name: PlayStation - Castlevania_ Symphony of the Night - Objects - Test Tubes_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 64
-        width: 17
-        height: 17
+        x: 1
+        y: 104
+        width: 46
+        height: 104
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ee49a009cbcbc9b0800000000000000
-      internalID: -5058725692260659483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SuperMarioSpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 64
-        width: 14
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 1, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c27703fb42cbd34a89d2dd9d8170564
-      internalID: 1251476226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SuperMarioSpriteSheet_0
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 65
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae74a7d8503ab704c89ee4479aaf0a88
-      internalID: 763809378
+      spriteID: 1e82058b3167bbe50800000000000000
+      internalID: 6826179487278835937
       vertices: []
       indices: 
       edges: []
@@ -213,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3c86ba521c094b8408125643a874d241
+    spriteID: 7ae252508fa67234392831ad2297cb21
     internalID: 0
     vertices: []
     indices: 
@@ -223,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SuperMarioSpriteSheet_0: 763809378
-      SuperMarioSpriteSheet_2: 1251476226
+      PlayStation - Castlevania_ Symphony of the Night - Objects - Test Tubes_0: 6826179487278835937
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

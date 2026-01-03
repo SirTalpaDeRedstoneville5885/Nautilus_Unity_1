@@ -3,12 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public static bool GameIsPaused = false, AchievementSlime = false;
+    public static bool GameIsPaused = false, AchievedSlime = false;
     [SerializeField] GameObject pausePanel, OptionPanel, AchievementButton;
     float tm = 0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // disattiva tutti i pannelli, e se si ha già sbloccato lo slime anche il pulsante dello slime
         pausePanel.SetActive(false);
         OptionPanel.SetActive(false);
         AchievementButton.SetActive(false);
@@ -17,6 +17,7 @@ public class Pause : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Cancel"))
+        // fa un check se viene premuto il pulsante esc per negare il bool di pausa, e se e' attivo dopo essere stato premuto stoppa la musica del livello e attiva il panel della pausa, disattivando quello delle opzioni se ancora era attivo 
         {
             GameIsPaused = !GameIsPaused;
             if (GameIsPaused)
@@ -27,6 +28,7 @@ public class Pause : MonoBehaviour
             }
         }
         if (!GameIsPaused)
+        // mette o meno in pausa
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -38,19 +40,21 @@ public class Pause : MonoBehaviour
         {
             Paused();
         }
-        if (GameManager.SlimeSbloccato && !AchievementSlime)
+        if (GameManager.SlimeSbloccato && !AchievedSlime)
+        // avvia un timer che fa vedere per un certo tempo il bottone di achievement slime, e poi lo disattiva
         {
             AchievementButton.SetActive(true);
             tm += Time.deltaTime;
             if (tm > 8f)
             {
                 AchievementButton.SetActive(false);
-                AchievementSlime = true;
+                AchievedSlime = true;
             }
         }
     }
     public void Resume()
     {
+        //blocca il cursore, cambia il bool di pausa, disattiva i pannelli di pausa cambia il timescale e avvia la musica della partita se non lo era gia'
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameIsPaused = false;
@@ -76,16 +80,15 @@ public class Pause : MonoBehaviour
     }
     public void LoadaScene(string NomeScena)
     {
-        PlayerMoves.JumpToDo = 1;
+        //reimposta varie cose allo stato di inizio del livello, e poi avvia resume e carica un livello
+        PlayerMoves.JumpToDo = 0;
         SpriteManager.Instance.ActiveSprite.GetComponent<SpriteRenderer>().material.color = Color.white;
         if (SpriteManager.Instance.ActiveSprite != SpriteManager.Instance.PlayerBody[1]) PlayerMoves.isSlimed = false;
-        GameIsPaused = false;
         Resume();
         SceneManager.LoadScene(NomeScena);
     }
     public void LoadMenu()
     {
-        GameIsPaused = false;
         Resume();
         SceneManager.LoadScene("Menu");
     }

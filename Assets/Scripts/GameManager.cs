@@ -6,23 +6,15 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] public static int Monete, LV = 1;
+    public static int Monete, LV = 1, Vite;
     public static bool FineLivello, SlimeSbloccato = false;
     [SerializeField] TextMeshProUGUI TestoMonete, TestoVite;
 
-    public static int Vite;
-
-    private string CalcolaSalti()
-    {
-        int r = PlayerMoves.JumpToDo + 1;
-        return ("Numero salti: " + r.ToString());
-    }
-
     void Update()
     {
+        // assegno ai testi i valori degli interi e gestisce achievement, vitee  fine livelli
         TestoMonete.text = Monete.ToString();
         TestoVite.text = Vite.ToString();
-        //TestoSalti.text = CalcolaSalti();
         if (Vite <= 0)
         {
             SceneManager.LoadScene("GameOver");
@@ -35,10 +27,9 @@ public class GameManager : MonoBehaviour
         }
         if (PlayerMoves.isSlimed && FineLivello) SlimeSbloccato = true;
     }
-
     void Start()
     {
-        // Bloccare e nascondere il mouse
+        // Blocca e nasconde il mouse, poi imposta delle variabili allo stato iniziale per ogni livello
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Monete = 0;

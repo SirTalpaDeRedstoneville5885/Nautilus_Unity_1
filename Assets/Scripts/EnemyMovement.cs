@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
             nextPos = pos2;
             lap = false;
         }
-        if (lap == false)
+        if (!lap)
         // controlla se il giro è completo e 
         {
             if (Vector2.Distance(enemyBody.transform.position, pos2.transform.position) == 0)
@@ -36,14 +36,14 @@ public class EnemyMovement : MonoBehaviour
                 nextPos = pos1;
             }
         }
-        if (lap)
+        else
         {
             if (Vector2.Distance(enemyBody.transform.position, pos2.transform.position) == 0)
             {
                 nextPos = pos3;
             }
         }
-        // gestisce la direzione dello slime
+        // gestisce la direzione del nemico, in caso sia uno slime, e attiva l'animator, qualora sia presente
         if (Tipologia == "NonSlime") EnemyAnimBody.transform.localRotation = lap ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 180, 0);
         else EnemyAnimBody.transform.localRotation = lap ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         if (EnemyAnimBody.GetComponent<Animator>() != null) EnemyAnimBody.GetComponent<Animator>().SetBool("Moving", true);

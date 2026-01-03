@@ -3,17 +3,18 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Ricomincia()
     {
+        //ricomincia il gioco
         GameManager.LV = 1;
         SceneManager.LoadScene("Livello1");
     }
     void Start()
     {
+        //rende usabile il cursore e sposta lo sprite manager
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Destroy(SpriteManager.Instance.gameObject);
+        SpriteManager.Instance.HideActiveSprite();
     }
 }
 
