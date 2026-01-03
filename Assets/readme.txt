@@ -20,8 +20,8 @@ Sprite Scaricati:
 Poweup Ali: Kirby Volo da Kirby Super Star Ultra, Nintendo
 Birdon: Kirby Super Star Ultra, Nintendo
 Sprite player 1: Pokémon Mystery Dungeon: Explorers of Time / Darkness, Game Freak, the Pokemon Company, Nintendo
-Sprite player 2: 
-Powerup Slime: SNES - King of Dragons - Enemies - Slimes
+Sprite player 2, Powerup Slime, sprite nemico slime: SNES - King of Dragons - Enemies - Slimes
+Sprite nemico fantasma: Napstablook, Undertale
 Checkpoint: PlayStation - Castlevania_ Symphony of the Night - Objects - Test Tubes
 Cartelli: reinman
 tutti i tile delle mappe: Super Mario Brothers 

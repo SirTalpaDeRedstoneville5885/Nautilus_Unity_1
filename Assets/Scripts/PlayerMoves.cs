@@ -16,7 +16,7 @@ public class PlayerMoves : MonoBehaviour
     public static float Multiplier;
     int CJ = 0;
     [SerializeField] int JumpMax = 0;
-    float horizontalMovement, FootstepVolume, WallOffset, Timer = 3f;
+    float horizontalMovement, FootstepVolume, WallOffset, Timer = 2.5f;
     AudioSource FootstepsSound;
     void Start()
     {
@@ -114,7 +114,7 @@ public class PlayerMoves : MonoBehaviour
             if (Timer < 0)
             {
                 isDead = false;
-                Timer = 3f;
+                Timer = 2.5f;
             }
         }
     }
