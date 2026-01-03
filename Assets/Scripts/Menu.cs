@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public bool SlimeDebug;
-    [SerializeField] GameObject MenuPanel, CharacterPanel, CreditPanel, Frame;
+    [SerializeField] GameObject MenuPanel, CharacterPanel, Frame;
     [SerializeField] GameObject[] BottoniChar, CopChar;
     void OnEnable()
     {
@@ -38,7 +38,6 @@ public class Menu : MonoBehaviour
     {
         MenuPanel.SetActive(false);
         CharacterPanel.SetActive(false);
-        CreditPanel.SetActive(false);
         StayActive.SetActive(true);
     }
     public void Play()
@@ -72,14 +71,6 @@ public class Menu : MonoBehaviour
         //assegna all'active sprite la propria identita' e  sposta un indicatore sul pulsante
         SpriteManager.Instance.ActiveSprite = SpriteManager.Instance.PlayerBody[SL];
         Frame.transform.position = BottoniChar[SL].GetComponent<Transform>().position;
-    }
-    public void Credits()
-    {
-        DisattivaPanelTranne(CreditPanel);
-    }
-    public void CloseCredits()
-    {
-        DisattivaPanelTranne(MenuPanel);
     }
     public void CloseGame()
     //chiude il gioco
